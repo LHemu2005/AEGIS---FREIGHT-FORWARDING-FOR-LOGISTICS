@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  customs_server:
+    build: .
+    command: python -m mcp_servers.customs_server
+    ports:
+      - "8001:8001"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+
+  port_server:
+    build: .
+    command: python -m mcp_servers.port_server
+    ports:
+      - "8002:8002"
+
+  telematics_server:
+    build: .
+    command: python -m mcp_servers.telematics_server
+    ports:
+      - "8003:8003"
+
+  vector_server:
+    build: .
+    command: python -m mcp_servers.vector_server
+    ports:
+      - "8004:8004"
+
+  dashboard:
+    build: .
+    command: streamlit run app/dashboard.py
+    ports:
+      - "8501:8501"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+    depends_on:
+      - customs_server
+      - port_server
+      - telematics_server
+      - vector_server
