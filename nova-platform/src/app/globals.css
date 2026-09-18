@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #F8F7F5;
+  --color-foreground: #111111;
+  --color-muted: #666666;
+  --color-accent: #000000;
+  --color-card: #FFFFFF;
+  --color-border: #E5E5E5;
+  --color-surface-dark: #1D1D1F;
+  --color-surface-light: #F4F4F4;
+  
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+}
+
+/* Force light mode strictly based on screenshots */
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .headline-cinematic {
+    font-weight: 400; /* Regular weight, serif-like feel or tight sans */
+    letter-spacing: -0.04em; /* Very tight tracking */
+    line-height: 1.05;
+    font-size: clamp(48px, 8vw, 96px);
+  }
+
+  .section-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-muted);
+    font-weight: 700;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
